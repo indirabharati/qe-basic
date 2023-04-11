@@ -1,4 +1,5 @@
 #!/bin/bash
+# update by github.com/indirabharati
 
 m=0
 limit=10
@@ -42,8 +43,8 @@ CELL_PARAMETERS
   0.00000 1.00000 0.00000
   0.00000 0.00000 1.00000
 ATOMIC_SPECIES
- Ga 69.720 Ga.UPF
- As 74.920 As.UPF
+ Ga 69.720 Ga.pbe-dn-kjpaw_psl.1.0.0.UPF
+ As 74.920 As.pbe-n-kjpaw_psl.1.0.0.UPF
 ATOMIC_POSITIONS {crystal}
  Ga 0.00000 0.00000 0.00000
  As 0.25000 0.25000 0.25000
@@ -60,11 +61,11 @@ EOF
 
 echo "Now the program will run with k_Points = $alat"
 sleep 2
-#pw.x < scf.in | tee scf.out
-#te=`grep ! scf.out | tail -1 | awk '{print $5}'`
-#echo "$alat  $te" >> etot.dat
-#mv scf.in scf$m.in10
-#mv scf.out scf$m.out
+pw.x < scf.in | tee scf.out
+te=`grep ! scf.out | tail -1 | awk '{print $5}'`
+echo "$alat  $te" >> etot.dat
+mv scf.in scf$m.in10
+mv scf.out scf$m.out
 
 let m=$m+1
 done
